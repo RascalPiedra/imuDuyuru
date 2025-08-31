@@ -19,6 +19,8 @@ if os.path.exists(file_path):
 else:
     x = ""
 
+print("TXT:", x)
+
 a = 0
 for i in first:
     a += 1
@@ -42,3 +44,4 @@ for i in first:
                     {"Content-type": "application/x-www-form-urlencoded"}
                 )
                 resp = conn.getresponse()
+
