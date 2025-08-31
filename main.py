@@ -29,15 +29,15 @@ while True:
     finally:
         print(x)
 
-    print("-----------------------------------------DUYURULAR-----------------------------------------")
+    #print("-----------------------------------------DUYURULAR-----------------------------------------")
     for i in first:
         a += 1
         if a >= 21 and a <= 24:
             duyuru = i.find("p")
-            print(duyuru.text)
+            #print(duyuru.text)
             if a == 21:
                     if x == duyuru.text:
-                        print("---Zaten duyuru bu.")
+                        #print("---Zaten duyuru bu.")
                         with open("son_duyuru.txt", "w") as file:
                             file.write(x)
                     else:
@@ -59,7 +59,8 @@ while True:
 
 
 
-delay(60)
+delay(30)
+
 
 
 
