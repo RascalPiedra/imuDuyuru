@@ -57,5 +57,6 @@ while True:
 
 
 
-    delay(900)
+    delay(600)
     
+
