@@ -28,9 +28,4 @@ jobs:
           git add .
           git commit -m "crongenerated"
           git push
-          rm -rf .git/
-          git init
-          git remote add origin https://repository.remote.url
-          git commit -m “Commit message”
-          git push -f origin master
-          
+
