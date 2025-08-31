@@ -29,15 +29,12 @@ for i in first:
                 with open(file_path, "w", encoding="utf-8") as file:
                     file.write(duyuru.text)
 
-                token = os.getenv("PUSHOVER_TOKEN", "aseio3vnkrsyv6i2szjgen2efddyba")
-                user = os.getenv("PUSHOVER_USER", "uiqzb6qk2e3yf81pbn5z8dr55od5wf")
-
                 conn.request(
                     "POST",
                     "/1/messages.json",
                     urllib.parse.urlencode({
-                        "token": token,
-                        "user": user,
+                        "token": "aseio3vnkrsyv6i2szjgen2efddyba",
+                        "user": "uiqzb6qk2e3yf81pbn5z8dr55od5wf",
                         "title": "Duyuru!!!",
                         "message": duyuru.text,
                     }),
