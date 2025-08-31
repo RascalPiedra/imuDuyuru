@@ -26,7 +26,6 @@ for i in first:
     a += 1
     if 21 <= a <= 24:
         duyuru = i.find("p")
-        print(f"Index {a} →", duyuru.text if duyuru else "Bulunamadi")
         if a == 21 and duyuru:
             if x != duyuru.text:
                 with open(file_path, "w", encoding="utf-8") as file:
@@ -44,4 +43,5 @@ for i in first:
                     {"Content-type": "application/x-www-form-urlencoded"}
                 )
                 resp = conn.getresponse()
+
 
