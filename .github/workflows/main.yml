@@ -2,8 +2,8 @@ name: Duyuru Kontrol
 
 on:
   schedule:
-    - cron: "*/1 * * * *"   # Her 15 dakikada bir çalışır (UTC zamanına göre)
-  workflow_dispatch:         # Manuel çalıştırma butonu da ekler
+    - cron: "*/1 * * * *"   # Her 15 dakikada bir
+  workflow_dispatch:         # Elle başlatma için buton ekler
 
 jobs:
   build:
@@ -12,12 +12,11 @@ jobs:
       - name: Kodları çek
         uses: actions/checkout@v3
 
-      - name: Cache last announcement
+      - name: Cache son_duyuru.txt
         uses: actions/cache@v3
         with:
           path: son_duyuru.txt
           key: duyuru-cache
-
 
       - name: Python kur
         uses: actions/setup-python@v4
@@ -28,9 +27,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Scripti çalıştır
-        run: |
-          python main.py
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-        
+        env:
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+        run: python main.py
