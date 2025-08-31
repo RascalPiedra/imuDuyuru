@@ -2,7 +2,7 @@ name: Duyuru Kontrol
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # Her 15 dakikada bir
+    - cron: "*/30 * * * *"   # Her 15 dakikada bir
   workflow_dispatch:         # Elle başlatma için buton ekler
 
 jobs:
