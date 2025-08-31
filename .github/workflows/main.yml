@@ -2,7 +2,7 @@ name: Duyuru Kontrol
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # Her 15 dakikada bir çalışır (UTC zamanına göre)
+    - cron: "*/1 * * * *"   # Her 15 dakikada bir çalışır (UTC zamanına göre)
   workflow_dispatch:         # Manuel çalıştırma butonu da ekler
 
 jobs:
