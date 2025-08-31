@@ -26,8 +26,6 @@ while True:
         file.close()
     except:
         x = ""
-    finally:
-        print(x)
 
     #print("-----------------------------------------DUYURULAR-----------------------------------------")
     for i in first:
@@ -59,10 +57,5 @@ while True:
 
 
 
-delay(900)
-
-
-
-
-
-
+    delay(900)
+    
