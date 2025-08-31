@@ -9,8 +9,7 @@ url = "https://medeniyet.edu.tr/tr"
 
 
 
-#while True:
-if True:
+while True:
     req =  requests.get(url).content
     soup = BeautifulSoup(req, "lxml")
 
@@ -58,4 +57,9 @@ if True:
                         conn.getresponse()
 
 
-    #delay(60)
+
+
+delay(60)
+
+
+
