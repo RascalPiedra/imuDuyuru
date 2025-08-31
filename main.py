@@ -42,7 +42,7 @@ while True:
                             file.write(x)
                     else:
                         x = duyuru.text
-                        print("---Yeni Duyuru!!!")
+                        #print("---Yeni Duyuru!!!")
                         with open("son_duyuru.txt", "w") as file:
                             file.write(x)
                         conn.request("POST", "/1/messages.json",
@@ -60,6 +60,7 @@ while True:
 
 
 delay(900)
+
 
 
 
