@@ -8,28 +8,23 @@ url = "https://medeniyet.edu.tr/tr"
 req = requests.get(url).content
 soup = BeautifulSoup(req, "lxml")
 
-first = soup.find_all("div", class_="media-body")
+first = soup.find_all("h3", class_="title")
 conn = http.client.HTTPSConnection("api.pushover.net:443")
 
 # Son duyuruyu tutacak dosya
-file_path = "son_duyuru.txt"
+file_path = "son_duyuru.txt"    
 if os.path.exists(file_path):
-    with open(file_path, "rt", encoding="utf-8") as file:
+    with open(file_path, "rt") as file:
         x = file.read()
 else:
     x = ""
 
-print("TXT:", x)
-
-a = 0
 for i in first:
-    a += 1
-    if 21 <= a <= 24:
-        duyuru = i.find("p")
-        if a == 21 and duyuru:
-            if x != duyuru.text:
-                with open(file_path, "w", encoding="utf-8") as file:
-                    file.write(duyuru.text)
+    if i.text == "DUYURULAR":
+        duyuru = i.find_next_sibling("div").find("p")
+        if x != duyuru.text:
+            with open(file_path, "w") as file:
+                file.write(duyuru.text)
 
                 conn.request(
                     "POST",
@@ -43,5 +38,6 @@ for i in first:
                     {"Content-type": "application/x-www-form-urlencoded"}
                 )
                 resp = conn.getresponse()
+
 
 
