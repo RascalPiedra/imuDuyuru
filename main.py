@@ -23,7 +23,14 @@ else:
 TOKEN = "8235702458:AAF2-W00mhcWkpMvL2NLz6wswsu1F5eZDGM"
 CHAT_ID = "duyurularformee"
 
-#Duyuruyu Arama
+def sendMessage(message:str):
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id=@{CHAT_ID}&text={message}"
+    try:
+        requests.post(url)
+    except Exception as e:
+        print("Telegram mesajı gönderilemedi:", e)
+
+#Duyuruyu Arama(imü)
 for i in first:
     if i.text == "DUYURULAR":
         duyuru = i.find_next_sibling("div").find("p")
@@ -31,8 +38,18 @@ for i in first:
             with open(file_path, "w") as file:
                 file.write(duyuru.text)
         
-                url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id=@{CHAT_ID}&text={duyuru.text}"
-                try:
-                    r = requests.post(url)
-                except Exception as e:
-                    print("Telegram mesajı gönderilemedi:", e)
+                sendMessage("------imü duyuru------\n" + duyuru.text)
+
+#Bölümün Duyurusu
+url = "https://bm.medeniyet.edu.tr/tr"
+request = requests.get(url).content
+soup1 = BeautifulSoup(request, "lxml")
+bul = soup1.find("div", class_="tab-container vertical vertical-tab tab-small-height")
+p = bul.find("p")
+with open("son_bolum_duyurusu.txt", "rt") as f:
+    if f.read() != p.text:
+        f.close()
+        with open("son_bolum_duyurusu.txt", "wt") as f:
+            f.write(p.text)
+            f.close()
+            sendMessage("-----bilgisayar duyuru-----\n" + p.text)
