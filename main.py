@@ -19,25 +19,20 @@ if os.path.exists(file_path):
 else:
     x = ""
 
+# Telegram bilgileri
+TOKEN = "8235702458:AAF2-W00mhcWkpMvL2NLz6wswsu1F5eZDGM"
+CHAT_ID = "duyurularformee"
+
+#Duyuruyu Arama
 for i in first:
     if i.text == "DUYURULAR":
         duyuru = i.find_next_sibling("div").find("p")
         if x != duyuru.text:
             with open(file_path, "w") as file:
                 file.write(duyuru.text)
-
-                conn.request(
-                    "POST",
-                    "/1/messages.json",
-                    urllib.parse.urlencode({
-                        "token": "aseio3vnkrsyv6i2szjgen2efddyba",
-                        "user": "uiqzb6qk2e3yf81pbn5z8dr55od5wf",
-                        "title": "Duyuru!!!",
-                        "message": duyuru.text,
-                    }),
-                    {"Content-type": "application/x-www-form-urlencoded"}
-                )
-                resp = conn.getresponse()
-
-
-
+        
+                url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id=@{CHAT_ID}&text={duyuru.text}"
+                try:
+                    r = requests.post(url)
+                except Exception as e:
+                    print("Telegram mesajı gönderilemedi:", e)
