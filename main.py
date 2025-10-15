@@ -30,6 +30,28 @@ def sendMessage(message:str):
     except Exception as e:
         print("Telegram mesajı gönderilemedi:", e)
 
+#Duyuru Link
+def duyuruLink(duyuru, bolumDuyurusuMu):
+    if bolumDuyurusuMu:
+        mainURL = "https://medeniyet.edu.tr/tr/duyurular/"
+    else:
+        mainURL = "https://muhendislikdogabilimleri.medeniyet.edu.tr/tr/duyurular/"
+    duyuru = duyuru.lower()
+    duyuru = duyuru.replace("ı", "i")
+    duyuru = duyuru.replace("ü", "u")
+    duyuru = duyuru.replace("ö", "o")
+    duyuru = duyuru.replace("ş", "s")
+    duyuru = duyuru.replace("ğ", "g")
+    duyuru = duyuru.replace("ç", "c")
+    duyuru = duyuru.replace(" ", "-")
+    duyuru = duyuru.replace("!", "")
+    duyuru = duyuru.replace("(", "")
+    duyuru = duyuru.replace(")", "")
+    while True:
+        if duyuru[-1] == '-': duyuru = duyuru[:-1]
+        else: break
+    return mainURL+duyuru
+
 #Duyuruyu Arama(imü)
 for i in first:
     if i.text == "DUYURULAR":
@@ -37,8 +59,9 @@ for i in first:
         if x != duyuru.text:
             with open(file_path, "w") as file:
                 file.write(duyuru.text)
+                link = duyuruLink(duyuru.text, False)
         
-                sendMessage("------imü duyuru------\n" + duyuru.text)
+                sendMessage("------imü duyuru------\n" + duyuru.text + "\n" + link)
 
 #Bölümün Duyurusu
 url = "https://bm.medeniyet.edu.tr/tr"
@@ -52,4 +75,6 @@ with open("son_bolum_duyurusu.txt", "rt") as f:
         with open("son_bolum_duyurusu.txt", "wt") as f:
             f.write(p.text)
             f.close()
-            sendMessage("-----bilgisayar duyuru-----\n" + p.text)
+
+            link = duyuruLink(p.text, True)
+            sendMessage("-----bilgisayar duyuru-----\n" + p.text + "\n" + link)
