@@ -79,3 +79,4 @@ with open("son_bolum_duyurusu.txt", "rt") as f:
             link = duyuruLink(p.text, True)
             sendMessage("-----bilgisayar duyuru-----\n" + p.text + "\n" + link)
 
+
