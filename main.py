@@ -36,8 +36,8 @@ def duyuruLink(duyuru, bolumDuyurusuMu):
         mainURL = "https://muhendislikdogabilimleri.medeniyet.edu.tr/tr/duyurular/"
     else:
         mainURL = "https://medeniyet.edu.tr/tr/duyurular/"
+    duyuru = duyuru.replace("İ","i")
     duyuru = duyuru.lower()
-    duyuru = duyuru.replace("i", "i")
     duyuru = duyuru.replace("ı", "i")
     duyuru = duyuru.replace("ü", "u")
     duyuru = duyuru.replace("ö", "o")
@@ -79,6 +79,7 @@ with open("son_bolum_duyurusu.txt", "rt") as f:
 
             link = duyuruLink(p.text, True)
             sendMessage("-----bilgisayar duyuru-----\n" + p.text + "\n" + link)
+
 
 
 
