@@ -48,6 +48,7 @@ def duyuruLink(duyuru, bolumDuyurusuMu):
     duyuru = duyuru.replace("!", "")
     duyuru = duyuru.replace("(", "")
     duyuru = duyuru.replace(")", "")
+    duyuru = duyuru.replace("/", "")
     while True:
         if duyuru[-1] == '-': duyuru = duyuru[:-1]
         else: break
@@ -79,6 +80,7 @@ with open("son_bolum_duyurusu.txt", "rt") as f:
 
             link = duyuruLink(p.text, True)
             sendMessage("-----bilgisayar duyuru-----\n" + p.text + "\n" + link)
+
 
 
 
