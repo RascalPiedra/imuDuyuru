@@ -18,8 +18,8 @@ else:
     x = ""
 
 # Telegram bilgileri
-TOKEN = os.environ("TOKEN_TELEGRAM")
-CHAT_ID = os.environ("CHATID_TELEGRAM")
+TOKEN = os.environ['TOKEN_TELEGRAM']
+CHAT_ID = os.environ['CHATID_TELEGRAM']
 
 def sendMessage(message:str):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id=@{CHAT_ID}&text={message}"
@@ -79,6 +79,7 @@ with open("son_bolum_duyurusu.txt", "rt") as f:
 
             link = duyuruLink(p.text, True)
             sendMessage("-----bilgisayar duyuru-----\n" + p.text + "\n" + link)
+
 
 
 
