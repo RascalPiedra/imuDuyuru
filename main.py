@@ -21,9 +21,6 @@ else:
 TOKEN = os.environ['TOKEN_TELEGRAM']
 CHAT_ID = os.environ['CHATID_TELEGRAM']
 
-print(f"TOKEN: {os.environ['TOKEN_TELEGRAM']}")
-print("CHAT_ID: "+CHAT_ID)
-
 def sendMessage(message:str):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id=@{CHAT_ID}&text={message}"
     try:
@@ -82,6 +79,7 @@ with open("son_bolum_duyurusu.txt", "rt") as f:
 
             link = duyuruLink(p.text, True)
             sendMessage("-----bilgisayar duyuru-----\n" + p.text + "\n" + link)
+
 
 
 
