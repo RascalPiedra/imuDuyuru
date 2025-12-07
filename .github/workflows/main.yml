@@ -24,8 +24,8 @@ jobs:
 
       - name: Scripti çalıştır
         env:
-          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
-          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+          TOKEN_TELEGRAM: ${{ secrets.TELEGRAM_TOKEN }}
+          CHATID_TELEGRAM: ${{ secrets.TELEGRAM_CHATID }}
         run: python main.py
 
       - name: Değişiklikleri commit et ve pushla
