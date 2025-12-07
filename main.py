@@ -18,8 +18,8 @@ else:
     x = ""
 
 # Telegram bilgileri
-TOKEN = "8235702458:AAF2-W00mhcWkpMvL2NLz6wswsu1F5eZDGM"
-CHAT_ID = "duyurularformee"
+TOKEN = TOKEN_TELEGRAM
+CHAT_ID = CHATID_TELEGRAM
 
 def sendMessage(message:str):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id=@{CHAT_ID}&text={message}"
@@ -47,6 +47,7 @@ def duyuruLink(duyuru, bolumDuyurusuMu):
     duyuru = duyuru.replace("(", "")
     duyuru = duyuru.replace(")", "")
     duyuru = duyuru.replace("/", "")
+    duyuru = duyuru.replace(".", "")
     while True:
         if duyuru[-1] == '-': duyuru = duyuru[:-1]
         else: break
@@ -78,6 +79,7 @@ with open("son_bolum_duyurusu.txt", "rt") as f:
 
             link = duyuruLink(p.text, True)
             sendMessage("-----bilgisayar duyuru-----\n" + p.text + "\n" + link)
+
 
 
 
