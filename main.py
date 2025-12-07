@@ -21,10 +21,14 @@ else:
 TOKEN = os.environ['TOKEN_TELEGRAM']
 CHAT_ID = os.environ['CHATID_TELEGRAM']
 
-def sendMessage(message:str):
-    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id=@{CHAT_ID}&text={message}"
+def sendMessage(message: str):
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    data = {
+        "chat_id": f"@{CHAT_ID}",  # burada ekliyoruz
+        "text": message
+    }
     try:
-        requests.post(url)
+        requests.post(url, data=data)
     except Exception as e:
         print("Telegram mesajı gönderilemedi:", e)
 
