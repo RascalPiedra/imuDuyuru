@@ -1,7 +1,6 @@
 import os
 import requests
 from bs4 import BeautifulSoup
-import http.client, urllib
 
 url = "https://medeniyet.edu.tr/tr"
 
@@ -9,7 +8,6 @@ req = requests.get(url).content
 soup = BeautifulSoup(req, "lxml")
 
 first = soup.find_all("h3", class_="title")
-conn = http.client.HTTPSConnection("api.pushover.net:443")
 
 # Son duyuruyu tutacak dosya
 file_path = "son_duyuru.txt"    
