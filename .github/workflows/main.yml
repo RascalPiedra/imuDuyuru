@@ -1,0 +1,39 @@
+name: Duyuru Kontrol
+
+on:
+  schedule:
+    - cron: "*/180 * * * *"   # Her 3 saatte bir
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodları çek
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Python kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Bağımlılıkları yükle
+        run: pip install -r requirements.txt
+
+      - name: Scripti çalıştır
+        env:
+          TOKEN_TELEGRAM: ${{ secrets.TELEGRAM_TOKEN }}
+          CHATID_TELEGRAM: ${{ secrets.TELEGRAM_CHATID }}
+        run: python main.py
+
+      - name: Değişiklikleri commit et ve pushla
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add son_duyuru.txt
+          git commit -m "Update son_duyuru.txt [skip ci]" || echo "No changes to commit"
+          git add son_bolum_duyurusu.txt
+          git commit -m "Update son_bolum_duyurusu.txt [skip ci]" || echo "No changes to commit"
+          git push
