@@ -46,6 +46,7 @@ def duyuruLink(duyuru, bolumDuyurusuMu):
     duyuru = duyuru.replace("ş", "s")
     duyuru = duyuru.replace("ğ", "g")
     duyuru = duyuru.replace("ç", "c")
+    duyuru = duyuru.replace("-", "")
     duyuru = duyuru.replace(" ", "-")
     duyuru = duyuru.replace("!", "")
     duyuru = duyuru.replace("(", "")
@@ -85,4 +86,5 @@ with open("son_bolum_duyurusu.txt", "rt") as f:
 
             
             sendMessage("-----bilgisayar duyuru-----\n" + p.text + "\n" + link)
+
  
